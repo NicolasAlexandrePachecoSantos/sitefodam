@@ -1,17 +1,135 @@
-</html><!DOCTYPE html>
-<html lang="en">
-<head> 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiteFodam</title>
-    <link rel="stylesheet" href="style.css">
-    <header class="cabeçalho">
-        <img class="cabeçalho-imagem"   src="/img/">
-        <ul class="cabeçalho-lista-item"
-    </header>
+    <title>Roleta Cassino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:#ff0000;
+            text-align: center;
+        }
+        header {
+            background-color: #ffc400;
+            color: rgb(255, 207, 118);
+            padding: 1rem;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: relative;
+        }
+        .wheel {
+            margin: 2rem auto;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 10px solid #333;
+            background: conic-gradient(
+                #ff0000 0% 20%, 
+                #000000 20% 40%, 
+                #ff0000 40% 60%, 
+                #000000 60% 80%, 
+                #ff0000 80% 100%
+            );
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .pointer {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid #333;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .bet-form {
+            margin-top: 2rem;
+        }
+        .bet-form input, .bet-form button {
+            margin: 0.5rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        .bet-form input[type="number"] {
+            width: calc(100% - 1.2rem);
+        }
+        .bet-form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .bet-form button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        #result {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
-    Bença filho
+    <header>
+        <h1>Roleta Cassino</h1>
+    </header>
     
+    <div class="container">
+        <div class="wheel">
+            <div class="pointer"></div>
+        </div>
+        
+        <form class="bet-form" id="betForm">
+            <label for="amount">Valor da Aposta:</label>
+            <input type="number" id="amount" name="amount" min="1" placeholder="Digite o valor da aposta" required>
+            <button type="submit">Girar</button>
+        </form>
+        
+        <p id="result"></p>
+    </div>
+    
+    <footer>
+        <p>&copy; cassinãofodao.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('betForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const amount = parseInt(document.getElementById('amount').value);
+            const result = document.getElementById('result');
+            
+            if (amount && amount > 0) {
+                // Simulação de giro da roleta
+                const randomDegree = Math.floor(Math.random() * 360);
+                document.querySelector('.wheel').style.transform = rotate(${randomDegree}deg);
+                
+                // Resultado da aposta (apenas para fins de exemplo)
+                result.innerText = Você apostou R$ ${amount}. A roleta girou e parou em ${randomDegree} graus.;
+            } else {
+                result.innerText = 'Por favor, insira um valor válido.';
+            }
+        });
+    </script>
 </body>
 </html>
