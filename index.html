@@ -14,7 +14,7 @@
         }
         header {
             background-color: #ffc400;
-            color: rgb(255, 207, 118);
+            color: rgb(0, 0, 0);
             padding: 1rem;
         }
         .container {
@@ -27,21 +27,82 @@
             position: relative;
         }
         .wheel {
-            margin: 2rem auto;
+            body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .wheel {
             width: 300px;
             height: 300px;
             border-radius: 50%;
             border: 10px solid #333;
-            background: conic-gradient(
-                #ff0000 0% 20%, 
-                #000000 20% 40%, 
-                #ff0000 40% 60%, 
-                #000000 60% 80%, 
-                #ff0000 80% 100%
-            );
             position: relative;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transform: rotate(0deg);
+            transition: transform 4s ease-out;
         }
+        .wheel::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            background-color: #ff0000;
+            border: 2px solid #fff;
+            transform-origin: 100% 100%;
+            clip-path: polygon(100% 100%, 0 100%, 100% 0);
+            border-radius: 0 0 50% 0;
+        }
+        .segment:nth-child(2) { background-color: #ffa705; transform: rotate(60deg); }
+        .segment:nth-child(3) { background-color: #990000; transform: rotate(120deg); }
+        .segment:nth-child(4) { background-color: #ffff00; transform: rotate(180deg); }
+        .segment:nth-child(5) { background-color: #000000; transform: rotate(240deg); }
+        .segment:nth-child(6) { background-color: #ff1100; transform: rotate(300deg); }
+        .spin-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wheel" id="wheel">
+        <div class="segment"></div>
+        <div class="segment"></div>
+        <div class="segment"></div>
+        <div class="segment"></div>
+        <div class="segment"></div>
+        <div class="segment"></div>
+    </div>
+    <button class="spin-btn" onclick="spinWheel()">Girar</button>
+    
+    <script>
+        function spinWheel() {
+            const wheel = document.getElementById('wheel');
+            const randomDegree = Math.floor(Math.random() * 360) + 3600; // Girar pelo menos 10 vezes
+            wheel.style.transform = `rotate(${randomDegree}deg)`;
+        }
+    </script>
+</body>
+</html>
         .pointer {
             width: 0;
             height: 0;
@@ -91,7 +152,7 @@
 </head>
 <body>
     <header>
-        <h1>Roleta Cassino</h1>
+        <h1>Roletão</h1>
     </header>
     
     <div class="container">
@@ -101,7 +162,7 @@
         
         <form class="bet-form" id="betForm">
             <label for="amount">Valor da Aposta:</label>
-            <input type="number" id="amount" name="amount" min="1" placeholder="Digite o valor da aposta" required>
+            <input type="number" id="amount" name="amount" min="1" placeholder="insira o valor da aposta" required>
             <button type="submit">Girar</button>
         </form>
         
