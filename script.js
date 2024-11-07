@@ -1,6 +1,6 @@
 const videos = [
     {
-      title: "Vídeo Exemplo 1",
+      title: "um soco só",
       embedUrl: "https://www.youtube.com/watch?v=jGFT57sWCXQ&pp=ygUUdW0gc29jbyBzbyA3c2VndW5kb3M%3D", // Substitua pelo link de incorporação do vídeo
       link: "https://www.youtube.com/watch?v=jGFT57sWCXQ&pp=ygUUdW0gc29jbyBzbyA3c2VndW5kb3M%3D"     // Link externo para o vídeo
     }
